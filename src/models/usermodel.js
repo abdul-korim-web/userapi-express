@@ -27,8 +27,15 @@ const addNewUser=(newuserdata)=>{
         console.log(`Error : ${error?.message}`);
     }
 }
-
+// showing single user useing id
+const singleusermodel = ()=>{
+    try {
+        return user
+    } catch (error) {
+        console.log(`Error : ${error?.message}`);
+    }
+}
 
 
 // export 
-export {allusers,addNewUser}
+export {allusers,addNewUser,singleusermodel}
