@@ -1,14 +1,4 @@
 const user=[
-    {
-        id:1,
-        name:'abdul korim',
-        role:"front end developer"
-    },
-    {
-        id:2,
-        name:'a.korim',
-        role:"learning back end development"
-    },
 ]
 
 // all user show 
@@ -43,6 +33,13 @@ const deleteusermodel = ()=>{
         console.log(`error : ${error?.message}`);
     }
 }
-
+// change target user info
+const changeUserInfoModel= ()=>{
+    try {
+       return user 
+    } catch (error) {
+        console.log(`Error ${error?.message}`);
+    }
+}
 // export 
-export {allusers,addNewUser,singleusermodel,deleteusermodel}
+export {allusers,addNewUser,singleusermodel,deleteusermodel,changeUserInfoModel}

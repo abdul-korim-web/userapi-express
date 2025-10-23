@@ -3,6 +3,7 @@ import {
   addNewUser,
   singleusermodel,
   deleteusermodel,
+  changeUserInfoModel,
 } from "../models/usermodel.js";
 
 // show all user
@@ -59,13 +60,51 @@ const deleteusercontrol = (req, res) => {
         message: `user not found try again`,
       });
     }
-    
-    res.status(200).json({message:"user delete success", userinfo:users[targetUserIndex]})
-    users.splice(targetUserIndex)
+
+    res
+      .status(200)
+      .json({
+        message: "user delete success",
+        userinfo: users[targetUserIndex],
+      });
+    users.splice(targetUserIndex);
   } catch (error) {
     res.status(400).json({ message: "user not delete", error: error?.message });
   }
 };
-
+// change target user info
+const changeUserInfoControl = (req, res) => {
+  try {
+    const data = req.body;
+    const id = Number(req.params.id);
+    const user = changeUserInfoModel();
+    const targetUserIndex = user.findIndex((item) => item.id === id);
+    // data not send 
+    if (!data) {
+      return res.status(400).json({message:"Please Enter The Valid Data"})
+    }
+    if (targetUserIndex === -1) {
+     return res.status(400).json({ message: `user not found try again` });
+    }
+    user[targetUserIndex]={
+      ...user[targetUserIndex],
+      username:data?.username || user[targetUserIndex]?.username,
+      email:data?.email || user[targetUserIndex]?.email,
+      password:data?.password || user[targetUserIndex]?.password
+    }
+    res.status(200).json({
+      message:`user info changed success`,
+      newuserinfo:user[targetUserIndex]
+    })
+  } catch (error) {
+    res.status(400).json({error:error?.message})
+  }
+};
 // export
-export { allusershow, addUser, showsingleuser, deleteusercontrol };
+export {
+  allusershow,
+  addUser,
+  showsingleuser,
+  deleteusercontrol,
+  changeUserInfoControl,
+};

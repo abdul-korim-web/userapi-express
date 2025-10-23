@@ -5,7 +5,7 @@ const app = express()
 
 // userroute
 app.use(express.json())
-app.use(`/users`,userroute)
+app.use(`/api/users`,userroute)
 
 
 //server start 
