@@ -1,4 +1,9 @@
-import { allusers, addNewUser, singleusermodel } from "../models/usermodel.js";
+import {
+  allusers,
+  addNewUser,
+  singleusermodel,
+  deleteusermodel,
+} from "../models/usermodel.js";
 
 // show all user
 const allusershow = (req, res) => {
@@ -40,8 +45,27 @@ const showsingleuser = (req, res) => {
         message: `user not found try again!`,
       });
     }
-    res.status(200).json(userlist[targetuserIndex])
+    res.status(200).json(userlist[targetuserIndex]);
   } catch (error) {}
 };
+// delete user (usering id)
+const deleteusercontrol = (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const users = deleteusermodel();
+    const targetUserIndex = users.findIndex((item) => item.id === id);
+    if (targetUserIndex === -1) {
+      return res.status(400).json({
+        message: `user not found try again`,
+      });
+    }
+    
+    res.status(200).json({message:"user delete success", userinfo:users[targetUserIndex]})
+    users.splice(targetUserIndex)
+  } catch (error) {
+    res.status(400).json({ message: "user not delete", error: error?.message });
+  }
+};
+
 // export
-export { allusershow, addUser,showsingleuser };
+export { allusershow, addUser, showsingleuser, deleteusercontrol };

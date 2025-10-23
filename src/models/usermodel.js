@@ -35,7 +35,14 @@ const singleusermodel = ()=>{
         console.log(`Error : ${error?.message}`);
     }
 }
-
+// delete user (usering id)
+const deleteusermodel = ()=>{
+    try {
+        return user
+    } catch (error) {
+        console.log(`error : ${error?.message}`);
+    }
+}
 
 // export 
-export {allusers,addNewUser,singleusermodel}
+export {allusers,addNewUser,singleusermodel,deleteusermodel}
