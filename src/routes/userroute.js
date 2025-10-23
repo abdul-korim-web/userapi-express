@@ -1,7 +1,8 @@
 import express from "express"
-const userroute = express.Router
+import { allusershow } from "../controls/usercontrol.js"
+const userroute = express.Router()
 
-
+userroute.get(`/`,allusershow)
 
 // export 
 export {userroute}
