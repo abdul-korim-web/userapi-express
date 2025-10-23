@@ -19,9 +19,16 @@ const allusers= ()=>{
         console.log(`error : ${error?.message}`);
     }
 }
-
+// added user 
+const addNewUser=(newuserdata)=>{
+    try {
+        user.push({id:user.length+1,...newuserdata})
+    } catch (error) {
+        console.log(`Error : ${error?.message}`);
+    }
+}
 
 
 
 // export 
-export {allusers}
+export {allusers,addNewUser}
