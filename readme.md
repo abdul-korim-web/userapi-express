@@ -51,7 +51,7 @@ A simple **RESTful Todo API** built with **Node.js** and **Express.js**, structu
 
 1. **Clone the repository:**
 ```bash
-https://github.com/abdul-korim-web/userapi-express
+git clone https://github.com/abdul-korim-web/userapi-express
 ```
 2. **Navigate to the project folder:**
 ```bash
