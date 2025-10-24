@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import {
   allusers,
   addNewUser,
@@ -18,6 +19,10 @@ const allusershow = (req, res) => {
 
 // added user
 const addUser = (req, res) => {
+  const validResult = validationResult(req)
+  if(!validResult.isEmpty()){
+    return res.status(400).json({massage:`error`,error:validResult.array()})
+  }
   try {
     const { username, password, email } = req.body;
     if (!username || !password || !email) {
